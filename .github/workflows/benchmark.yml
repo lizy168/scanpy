@@ -30,7 +30,7 @@ jobs:
           fetch-depth: 0
           filter: blob:none
 
-      - name: Fetch main branch for `asv run`’s hash
+      - name: Fetch main branch for `asv run`鈥檚 hash
         run: git fetch origin main:main
         if: ${{ github.ref_name != 'main' }}
 
@@ -48,8 +48,7 @@ jobs:
           key: benchmark-state-${{ hashFiles('benchmarks/**') }}
 
       - name: Install dependencies
-        # TODO: revert once this PR is merged: https://github.com/airspeed-velocity/asv/pull/1397
-        run: pip install 'asv @ git+https://github.com/ivirshup/asv@fix-conda-usage'
+        run: pip install 'asv>=0.6.4'
 
       - name: Configure ASV
         working-directory: ${{ env.ASV_DIR }}
